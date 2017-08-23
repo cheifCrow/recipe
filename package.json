@@ -1,0 +1,16 @@
+{
+  "name": "recipe",
+  "version": "1.0.0",
+  "description": "Recipe angular app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Duncan Robertson",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "express": "^4.15.4"
+  }
+}

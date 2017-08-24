@@ -1,3 +1,25 @@
 <h2>Browse</h2>
-
-<h3>Entrées</h3>
+<div ng-show="browseCtrl.entrees">
+	<h3>Entrees</h3>
+	<ul>
+		<li ng-repeat="i in browseCtrl.entrees">
+			<a ng-href="recipe/{{i.id}}">{{i.title}}</a> 
+		</li>
+	</ul>
+</div>
+<div ng-show="browseCtrl.deserts">
+	<h3>Deserts</h3>
+	<ul>
+		<li ng-repeat="i in browseCtrl.deserts">
+			<a ng-href="recipe/{{i.id}}">{{i.title}}</a> 
+		</li>
+	</ul>
+</div>
+<div ng-show="browseCtrl.other">
+	<h3>Other</h3>
+	<ul>
+		<li ng-repeat="i in browseCtrl.other">
+			<a ng-href="recipe/{{i.id}}">{{i.title}}</a> 
+		</li>
+	</ul>
+</div>

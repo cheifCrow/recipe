@@ -2,33 +2,42 @@
 	<head>
 		<meta charset="utf-8">
 		<base href="/">
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css" media="all">
 		<script src="scripts/angular.js"></script>
 		<script src="scripts/angular-route.js"></script>
 		<script src="scripts/recipe.js"></script>
 		<script src="scripts/config/common.js"></script>
 		<script src="scripts/config/routing.js"></script>
+		<script src="scripts/directives/drFocus.js"></script>
+		<script src="scripts/directives/drRecipe.js"></script>
+		<script src="scripts/services/recipeService.js"></script>
 		<script src="scripts/controllers/MainController.js"></script>
 		<script src="scripts/controllers/RecipeController.js"></script>
 		<script src="scripts/controllers/BrowseController.js"></script>
+		<script src="scripts/controllers/AddController.js"></script>
 	</head>
 
 	<body>
 		<div class="container">
 			<header>
-				<h1>Recipe App</h1>
+				<h1>App</h1>
 			</header>
 
 			<div id="subHeader">
 				<a ng-href="_blank"><div>Home</div></a>
 				<a ng-href="browse"><div>Browse</div></a>
+				<a ng-href="add"><div>New Recipe</div></a>
 				<a ng-href="about"><div>About</div></a>
 			</div>
 			
-			<div id="content" ng-view></div>
+			<div class="contentSpacer">
+				<div id="content" class="card">
+					<div ng-view></div>
+				</div>
+			</div>
 
 			<footer>
-				<span>&copy Duncan Robertson</span>
+				<span>Made by Duncan Robertson</span>
 			</footer>
 		</div>
 	</body>

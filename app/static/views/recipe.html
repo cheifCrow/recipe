@@ -1,24 +1,30 @@
-<div class="markedSection">
-	<div class="recipeTitle">
-		<h2>{{recipeCtrl.recipe.title}}</h2>
+<div ng-if="recipeCtrl.recipe">
+	<div class="markedSection">
+		<div class="recipeTitle">
+			<h2>{{recipeCtrl.recipe.title}}</h2>
+		</div>
+		<div class="recipeImg">
+			<img  ng-src="{{recipeCtrl.recipe.img}}"/>
+		</div>
 	</div>
-	<div class="recipeImg">
-		<img  ng-src="{{recipeCtrl.recipe.img}}"/>
+	<div class="markedSection recipeIngredients">
+		<h3>Ingredients</h3>
+		<ul>
+			<li ng-repeat="i in recipeCtrl.recipe.ingredients">
+				{{i.type}} {{i.quantity}}
+			</li>
+		</ul>
+	</div>
+	<div class="markedSection recipeInstructions">
+		<h3>Instructions</h3>
+		<ol>
+			<li ng-repeat="i in recipeCtrl.recipe.instructions">
+				{{i.step}}
+			</li>
+		</ol>
 	</div>
 </div>
-<div class="markedSection recipeIngredients">
-	<h3>Ingredients</h3>
-	<ul>
-		<li ng-repeat="i in recipeCtrl.recipe.ingredients">
-			{{i.type}} {{i.quantity}}
-		</li>
-	</ul>
-</div>
-<div class="recipeInstructions">
-	<h3>Instructions</h3>
-	<ol>
-		<li ng-repeat="i in recipeCtrl.recipe.instructions">
-			{{i.step}}
-		</li>
-	</ol>
+<div ng-if="recipeCtrl.recipe === false">
+	<h2>Oops</h2>
+	<p>That recipe doesn't exist</p>
 </div>

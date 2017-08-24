@@ -1,0 +1,56 @@
+<form name="add_form" novalidate dr-recipe ng-model="form" ng-submit="addCtrl.submit()">
+	<div>
+		<input name="title" ng-model="title" type="text"
+			placeholder="Title"
+			ng-minlength=3  ng-maxlength=20 required dr-focus/>
+		<div class="error" ng-if="add_form.title.$dirty && !add_form.title.$focused">
+			<small ng-show="add_form.title.$error.required">
+				Field is required
+			</small>
+			<small ng-show="add_form.title.$error.minlength">
+				Must be at least 3 characters
+			</small>
+			<small ng-show="add_form.title.$error.maxlength">
+				Cannot be more than 20 characters
+			</small>
+		</div>
+	</div>
+
+	<div>
+		<input name="ingredient" ng-model="ingredient.name" type="text"
+			placeholder="Ingredient"
+			ng-minlength=3 ng-maxlength=20 dr-focus/>
+
+		<input type="number" ng-model="ingredient.quantity" step="any" placeholder="Quantity" />
+		
+		<select name="unitType" ng-model="ingredient.unitType"
+			ng-options="unitType for unitType in addCtrl.unitTypes">
+			<option value="" disabled selected>Type</option>
+		</select>
+		
+		<select ng-show="ingredient.unitType" ng-model="ingredient.unit"
+			ng-options="unit for unit in addCtrl.units">
+			<option value="" disabled selected>Unit</option>
+		</select>
+		
+		<button ng-click="addCtrl.addIngredient()">Add</button>
+		
+		<div class="error" ng-show="add_form.ingredient.$dirty && !add_form.ingredient.$focused">
+			<small ng-show="add_form.ingredient.$error.minlength">
+				Must be at least 3 characters
+			</small>
+			<small ng-show="add_form.ingredient.$error.maxlength">
+				Cannot be more than 20 characters
+			</small>
+		</div>
+	</div>
+
+	<div>
+		<input name="Instruction" ng-model="instruction" type="text"
+			placeholder="Instruction"
+			ng-minlength=3 dr-focus/>
+		<button ng-click="addCtrl.addInstruction()">Add</button>
+	</div>
+
+	<button ng-disabled="add_form.$pristine || add_form.$invalid" type="submit">Finish Recipe</button>
+</form>

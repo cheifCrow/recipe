@@ -1,18 +1,20 @@
+:root {
+	--theme-background-dark: #252525;
+	--theme-background-dark2: #444444;
+	--theme-foreground-light: #FFFFFF;
+	--theme-background-light: #FAFAFA;
+}
+
 body {
 	height: 100%;
 	margin: 0 0 0 0;
-}
-:root {
-	--theme-background-dark: #000000;
-	--theme-background-dark2: #444444;
-	--theme-foreground-light: #FFFFFF;
-	--theme-main-background: #00FF00;
 }
 
 header {
 	width: 100%;
 	overflow: auto;
-	background-color: var(--theme-main-background);
+	background-color: var(--theme-background-dark);
+	color: var(--theme-foreground-light);
 }
 
 header h1 {
@@ -25,8 +27,13 @@ footer {
 	width: 100%;
 	text-align: center;
 	padding: 0.5em 0 0.5em 0;
-	background-color: var(--theme-background-dark);
-	color: var(--theme-foreground-light);
+	background-color: var(--theme-background-light);
+	border-top: solid lightgrey 1px;
+}
+
+.card {
+	border: 1px lightgrey solid;
+	box-shadow: 3px 3px 5px #888888;
 }
 
 #content {
@@ -35,12 +42,13 @@ footer {
 	width: 60%;
 	min-width: 450px;
 	max-width: 700px;
-	padding-bottom: 2.5em;
+	padding: 1.5em;
 }
 
 #subHeader {
 	width: 100%;
 	background-color: var(--theme-background-dark2);
+	border-bottom: 1px solid var(--theme-background-dark);
 }
 
 #subHeader div {
@@ -49,12 +57,20 @@ footer {
 	color: var(--theme-foreground-light);
 }
 
+.error {
+	color: red;
+}
+
 .container {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	width: 100%;
 	min-height: 100%;
 	position: relative;
+}
+
+.contentSpacer {
+	padding-bottom: 3em;
 }
 
 .recipeImg {
@@ -76,6 +92,25 @@ footer {
 	width: 100%;
 }
 
-.markedSection {
-	border-bottom: 1px solid black;
+.markedSection + .markedSection {
+	border-top: 1px solid black;
+}
+
+input.ng-dirty.ng-invalid {
+	border: 1px solid red;
+}
+
+input.ng-dirty.ng-valid {
+	border: 1px solid green;
+}
+
+@media print {
+	body * {visibility: hidden;}
+	#content * {visibility: visible;}
+	#content { 
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
 }

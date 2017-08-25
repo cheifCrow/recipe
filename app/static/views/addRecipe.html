@@ -1,22 +1,62 @@
 <form name="add_form" novalidate dr-recipe ng-model="form" ng-submit="addCtrl.submit()">
-	<div>
-		<input name="title" ng-model="title" type="text"
-			placeholder="Title"
-			ng-minlength=3  ng-maxlength=20 required dr-focus/>
-		<div class="error" ng-if="add_form.title.$dirty && !add_form.title.$focused">
-			<small ng-show="add_form.title.$error.required">
-				Field is required
-			</small>
-			<small ng-show="add_form.title.$error.minlength">
-				Must be at least 3 characters
-			</small>
-			<small ng-show="add_form.title.$error.maxlength">
-				Cannot be more than 20 characters
-			</small>
+	<div class="markedSection spaceForm">
+		<div class="inlineDiv alignTop">
+			<label for="title">Recipe Name</label><br>
+			<input name="title" ng-model="title" type="text"
+				placeholder="Name"
+				ng-minlength=3  ng-maxlength=20 required dr-focus/>
+			<div class="error" ng-if="add_form.title.$dirty && !add_form.title.$focused">
+				<small ng-show="add_form.title.$error.required">
+					Field is required
+				</small>
+				<small ng-show="add_form.title.$error.minlength">
+					Must be at least 3 characters
+				</small>
+				<small ng-show="add_form.title.$error.maxlength">
+					Cannot be more than 20 characters
+				</small>
+			</div>
+		</div>
+		<div class="inlineDiv alignTop">
+			<label>Image</label><br/>
+			<div class="tabPage" ng-init="image.type='url'">
+				<div class="tabList">
+					<div class="tabButton textButton" ng-click="image.type='url'" 
+						ng-class="{activeTab: image.type === 'url'}">
+						URL
+					</div>
+					<div class="tabButton textButton" ng-click="image.type='file'"
+						ng-class="{activeTab: image.type === 'file'}">
+						File
+					</div>
+				</div>
+				<div class="tabBody">
+					<div ng-show="image.type === 'url'">
+						<input type="text" placeholder="Image url" ng-model="image.url">
+					</div>
+					<div ng-show="image.type === 'file'">
+						<input type="text" placeholder="Image file" ng-model="image.file">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div>
+	<div class="markedSection spaceForm" ng-keyup="$event.keyCode == 13 && addCtrl.addIngredient()">
+		<label for="title">Ingredients</label><br>
+		<table class="tableList">
+			<tr ng-repeat="ingredient in recipe.ingredients" ng-class="{shaded: $odd}">
+				<td>
+					<li>{{ingredient.type}} {{ingredient.quantity}}</li>
+				</td>
+				<td>
+					<div class="textButton red" 
+						ng-click="addCtrl.delIngredient($index)">
+						X
+					</div>
+				</td>
+			</tr>
+		</table>
 		<input name="ingredient" ng-model="ingredient.name" type="text"
 			placeholder="Ingredient"
 			ng-minlength=3 ng-maxlength=20 dr-focus/>
@@ -33,7 +73,7 @@
 			<option value="" disabled selected>Unit</option>
 		</select>
 		
-		<button ng-click="addCtrl.addIngredient()">Add</button>
+		<button type="button" ng-click="addCtrl.addIngredient()">Add</button>
 		
 		<div class="error" ng-show="add_form.ingredient.$dirty && !add_form.ingredient.$focused">
 			<small ng-show="add_form.ingredient.$error.minlength">
@@ -45,12 +85,32 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="markedSection spaceForm">
+		<label for="title">Instructions</label><br>
+		<table class="tableList">
+			<tr ng-repeat="instruction in recipe.instructions" ng-class="{shaded: $odd}">
+				<td>
+					{{$index+1}}. {{instruction.step}}
+				</td>
+				<td>
+					<div class="textButton red" 
+						ng-click="addCtrl.delInstruction($index)">
+						X
+					</div>
+				</td>
+			</tr>
+		</table>
+	
 		<input name="Instruction" ng-model="instruction" type="text"
 			placeholder="Instruction"
 			ng-minlength=3 dr-focus/>
-		<button ng-click="addCtrl.addInstruction()">Add</button>
+		<button type="button" ng-click="addCtrl.addInstruction()">Add</button>
 	</div>
 
-	<button ng-disabled="add_form.$pristine || add_form.$invalid" type="submit">Finish Recipe</button>
+	<div class="markedSection spaceForm">
+			<button ng-disabled="add_form.$pristine || add_form.$invalid" type="submit">Finish Recipe</button>
+	</div>
+
+	<small class="success" ng-show="addCtrl.result">Recipe added successfully</small>
+	<small class="error" ng-show="addCtrl.result == false">Recipe could not be submitted</small>
 </form>

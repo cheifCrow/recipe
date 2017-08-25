@@ -1,3 +1,7 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
 :root {
 	--theme-background-dark: #252525;
 	--theme-background-dark2: #444444;
@@ -18,12 +22,13 @@ header {
 }
 
 header h1 {
-	margin-left: 1em;
+	margin-left: 0.5em;
 }
 
 footer {
 	position: absolute;
 	bottom: 0;
+	height: 2em;
 	width: 100%;
 	text-align: center;
 	padding: 0.5em 0 0.5em 0;
@@ -38,7 +43,6 @@ footer {
 
 #content {
 	margin: auto;
-	margin-top: 2%;
 	width: 60%;
 	min-width: 450px;
 	max-width: 700px;
@@ -52,13 +56,17 @@ footer {
 }
 
 #subHeader div {
-	padding: 0.5em 1em 0.5em 1em;
+	padding: 0.5em 1em;
 	display: inline-block;
 	color: var(--theme-foreground-light);
 }
 
 .error {
 	color: red;
+}
+
+.success {
+	color: green;
 }
 
 .container {
@@ -70,12 +78,14 @@ footer {
 }
 
 .contentSpacer {
-	padding-bottom: 3em;
+	padding-top: 2em;
+	padding-bottom: 4em;
 }
 
 .recipeImg {
-	width: 33%;
+	width: 40%;
 	display: inline-block;
+	padding-bottom: 1em;
 }
 
 .recipeImg img {
@@ -83,7 +93,7 @@ footer {
 }
 
 .recipeTitle {
-	width: 66%;
+	width: 60%;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -96,12 +106,95 @@ footer {
 	border-top: 1px solid black;
 }
 
+.red {
+	color: red;
+}
+
+.spaceForm + .spaceForm {
+	margin-top: 1em;
+	padding-top: 1em;
+}
+
+.paddedSection {
+	padding-top: 1em;
+}
+
+.textButton {
+	display: inline-block;
+	cursor: pointer;
+	padding: .2em;
+	font-family: monospace;
+}
+
+.tableList {
+	border-collapse: collapse;
+}
+
+.tableList td + td {
+	padding-left: 1em;
+}
+
+.shaded {
+	background-color: #EBEBEB;
+}
+
+.inlineDiv {
+	display: inline-block;
+}
+
+.tabPage {
+	border: 1px solid lightgrey;
+}
+
+.tabBody {
+	border-top: 1px solid lightgrey;
+	padding: 1em;
+}
+
+.tabList {
+	background-color: aliceblue;
+	display: flex;
+}
+
+.activeTab {
+	background-color: silver;
+}
+
+.tabButton:hover {
+	background-color: gainsboro;
+}
+
+.alignTop {
+	vertical-align: top;
+}
+
 input.ng-dirty.ng-invalid {
 	border: 1px solid red;
 }
 
 input.ng-dirty.ng-valid {
 	border: 1px solid green;
+}
+
+@media screen and (max-width: 500px) {
+	#content {
+		min-width: 0;
+		box-sizing: border-box;
+		width: 100%;
+		box-shadow: none;
+		border: none;
+	}
+
+	.recipeTitle {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.recipeImg {
+		width: 100%;
+		display: block;
+		margin: auto;
+	}
 }
 
 @media print {

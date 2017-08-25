@@ -35,9 +35,16 @@
 				return recipes;
 			},
 			recipe: function(id) {
-
 				if (recipes[id-1]) {
 					return recipes[id-1];
+				} else {
+					return false;
+				}
+			},
+			addRecipe: function(recipe) {
+				if (recipe.ingredients.length && recipe.instructions.length) {
+					recipes.push(recipe);
+					return true;
 				} else {
 					return false;
 				}

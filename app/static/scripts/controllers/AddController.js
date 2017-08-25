@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	angular.module('recipe')
-	.controller('AddController', function($scope) {
+	.controller('AddController', function($scope, recipeService) {
 		var sizes = ['ft', 'in', 'mm', 'cm', 'm', 'yd'];
 		var weights = ['lb', 'oz', 'mg', 'g', 'kg'];
 		var volumes = ['tsp', 'tbsp', 'c', 'qt', 'ml', 'l', 'pt', 'gal'];
@@ -11,12 +11,32 @@
 		vm.units = null;
 
 		$scope.recipe = {
+			title: '',
+			type: '',
+			img: '',
 			ingredients: [],
 			instructions: []
 		};
 
 		vm.submit = function() {
+			$scope.recipe.title = $scope.title;
+			console.log($scope.image);
+			if ($scope.image.type === 'url') {
+				$scope.recipe.img = $scope.image.url;
+			}
+			vm.result = recipeService.addRecipe($scope.recipe);
+		};
 
+		vm.delIngredient = function(index) {
+			if ($scope.recipe.ingredients[index]) {
+				$scope.recipe.ingredients.splice(index, 1);
+			}
+		};
+
+		vm.delInstruction = function(index) {
+			if ($scope.recipe.instructions[index]) {
+				$scope.recipe.instructions.splice(index, 1)
+			}
 		};
 
 		vm.addIngredient = function() {
@@ -34,6 +54,20 @@
 					type: ingredient,
 					quantity: quantity
 				});
+
+				$scope.ingredient.name = '';
+				$scope.ingredient.quantity = '';
+				$scope.ingredient.unitType = '';
+			}
+		}
+
+		vm.addInstruction = function() {
+			if ($scope.instruction) {
+				$scope.recipe.instructions.push({
+					step: $scope.instruction
+				});
+
+				$scope.instruction = '';
 			}
 		}
 

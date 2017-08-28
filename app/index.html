@@ -24,17 +24,17 @@
 			<header>
 				<div class="relative">
 					<div class="inlineDiv"> 
-						<h1>App</h1>
+						<a class="linkButton" ng-href="_blank"><h1>App</h1></a>
 					</div>
-					<div ng-model="menu.dropDown" ng-init="menu.dropDown = false" toggle-button class="absoluteRight verticalMid textButton">Drop Down Menu</div>
+					<div ng-model="menu.dropDown" toggle-button class="absoluteRight verticalMid textButton navButton desktopHide">☰</div>
 				</div>
 			</header>
 
-			<div id="subHeader">
-				<a ng-href="_blank"><div>Home</div></a>
-				<a ng-href="browse"><div>Browse</div></a>
-				<a ng-href="add"><div>New Recipe</div></a>
-				<a ng-href="about"><div>About</div></a>
+			<div id="subHeader" ng-class="{mobileHide: !menu.dropDown}">
+				<a ng-model="menu.dropDown" toggle-button ng-href="_blank"><div>Home</div></a>
+				<a ng-model="menu.dropDown" toggle-button ng-href="browse"><div>Browse</div></a>
+				<a ng-model="menu.dropDown" toggle-button ng-href="add"><div>New Recipe</div></a>
+				<a ng-model="menu.dropDown" toggle-button ng-href="about"><div>About</div></a>
 			</div>
 			
 			<div class="contentSpacer">

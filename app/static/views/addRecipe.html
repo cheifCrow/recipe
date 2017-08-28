@@ -1,7 +1,7 @@
 <form name="add_form" novalidate dr-recipe ng-model="form" ng-submit="addCtrl.submit()">
 	<div class="markedSection spaceForm">
-		<div class="inlineDiv alignTop">
-			<div class="spaceForm">
+		<div class="flex">
+			<div class="alignTop formMargin">
 				<label for="title">Recipe Name</label><br>
 				<input name="title" ng-model="title" type="text"
 					placeholder="Name"
@@ -18,35 +18,35 @@
 					</small>
 				</div>
 			</div>
-			<div class="spaceForm">
-				<label>Recipe Type</label>
+			<div class="alignTop formMargin">
+				<label>Recipe Type</label><br>
 				<select ng-model="recipe.type" ng-options="type for type in addCtrl.types">
 				</select>
 			</div>
-		</div>
-		<div class="inlineDiv alignTop">
-			<label>Image</label><br/>
-			<div class="tabPage" ng-init="image.type='file'">
-				<div class="tabList">
-					<div class="tabButton textButton" ng-click="image.type='file'"
-						ng-class="{activeTab: image.type === 'file'}">
-						File
+			<div class="alignTop formMargin">
+				<label>Image</label><br/>
+				<div class="tabPage" ng-init="image.type='file'">
+					<div class="tabList">
+						<div class="tabButton textButton" ng-click="image.type='file'"
+							ng-class="{activeTab: image.type === 'file'}">
+							File
+						</div>
+						<div class="tabButton textButton" ng-click="image.type='url'" 
+							ng-class="{activeTab: image.type === 'url'}">
+							URL
+						</div>					
 					</div>
-					<div class="tabButton textButton" ng-click="image.type='url'" 
-						ng-class="{activeTab: image.type === 'url'}">
-						URL
-					</div>					
-				</div>
-				<div class="tabBody">
-					<div ng-show="image.type === 'url'">
-						<input type="text" placeholder="Image url" ng-model="image.url">
-					</div>
-					<div ng-show="image.type === 'file'">
-						<input type="text" placeholder="Image file" ng-model="image.file">
+					<div class="tabBody">
+						<div ng-show="image.type === 'url'">
+							<input type="text" placeholder="Image url" ng-model="image.url">
+						</div>
+						<div ng-show="image.type === 'file'">
+							<input type="text" placeholder="Image file" ng-model="image.file">
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 	</div>
 
 	<div class="markedSection spaceForm" ng-keyup="$event.keyCode == 13 && addCtrl.addIngredient()">
@@ -65,10 +65,9 @@
 			</tr>
 		</table>
 		<input name="ingredient" ng-model="ingredient.name" type="text"
-			placeholder="Ingredient"
-			ng-minlength=3 ng-maxlength=20 dr-focus/>
-
-		<input type="number" ng-model="ingredient.quantity" step="any" placeholder="Quantity" />
+			placeholder="Ingredient" class="halfWidth"
+			ng-minlength=3 ng-maxlength=20 dr-focus/
+		><input class="halfWidth" type="number" ng-model="ingredient.quantity" min="0" step="any" placeholder="Quantity" />
 		
 		<select name="unitType" ng-model="ingredient.unitType"
 			ng-options="unitType for unitType in addCtrl.unitTypes">
@@ -109,9 +108,10 @@
 		</table>
 	
 		<input name="Instruction" ng-model="instruction" type="text"
-			placeholder="Instruction"
-			ng-minlength=3 dr-focus/>
-		<button type="button" ng-click="addCtrl.addInstruction()">Add</button>
+			placeholder="Instruction" class="fullWidth"
+			ng-minlength=3 dr-focus
+			ng-keyup="$event.keyCode == 13 && addCtrl.addInstruction()"/
+		><button type="button" ng-click="addCtrl.addInstruction()">Add</button>
 	</div>
 
 	<div class="markedSection spaceForm">

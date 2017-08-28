@@ -3,6 +3,8 @@
 	angular.module('recipe')
 	.factory('recipeService', function(){
 		//Stand in service, would be replaced by ajax service
+		var types = ['entree', 'desert', 'apetizer', 'breakfast', 'lunch', 'snack', 'other']
+
 		var recipes = [
 		{
 			title: 'Hamburgers',
@@ -48,6 +50,9 @@
 				} else {
 					return false;
 				}
+			},
+			getTypes: function() {
+				return types;
 			}
 		};
 	});

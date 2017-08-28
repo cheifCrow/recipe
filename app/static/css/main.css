@@ -44,8 +44,8 @@ footer {
 #content {
 	margin: auto;
 	width: 60%;
-	min-width: 450px;
-	max-width: 700px;
+	min-width: 768px;
+	max-width: 1024px;
 	padding: 1.5em;
 }
 
@@ -124,6 +124,7 @@ footer {
 	cursor: pointer;
 	padding: .2em;
 	font-family: monospace;
+	user-select: none;
 }
 
 .tableList {
@@ -176,13 +177,31 @@ input.ng-dirty.ng-valid {
 	border: 1px solid green;
 }
 
-@media screen and (max-width: 500px) {
+.absoluteRight {
+	position: absolute;
+	right: 0;
+}
+
+.verticalMid {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.relative {
+	position: relative;
+}
+
+@media screen and (max-width: 768px) {
 	#content {
 		min-width: 0;
 		box-sizing: border-box;
 		width: 100%;
 		box-shadow: none;
 		border: none;
+	}
+
+	#subHeader a {
+		display: block;
 	}
 
 	.recipeTitle {

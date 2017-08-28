@@ -1,34 +1,41 @@
 <form name="add_form" novalidate dr-recipe ng-model="form" ng-submit="addCtrl.submit()">
 	<div class="markedSection spaceForm">
 		<div class="inlineDiv alignTop">
-			<label for="title">Recipe Name</label><br>
-			<input name="title" ng-model="title" type="text"
-				placeholder="Name"
-				ng-minlength=3  ng-maxlength=20 required dr-focus/>
-			<div class="error" ng-if="add_form.title.$dirty && !add_form.title.$focused">
-				<small ng-show="add_form.title.$error.required">
-					Field is required
-				</small>
-				<small ng-show="add_form.title.$error.minlength">
-					Must be at least 3 characters
-				</small>
-				<small ng-show="add_form.title.$error.maxlength">
-					Cannot be more than 20 characters
-				</small>
+			<div class="spaceForm">
+				<label for="title">Recipe Name</label><br>
+				<input name="title" ng-model="title" type="text"
+					placeholder="Name"
+					ng-minlength=3  ng-maxlength=20 required dr-focus/>
+				<div class="error" ng-if="add_form.title.$dirty && !add_form.title.$focused">
+					<small ng-show="add_form.title.$error.required">
+						Field is required
+					</small>
+					<small ng-show="add_form.title.$error.minlength">
+						Must be at least 3 characters
+					</small>
+					<small ng-show="add_form.title.$error.maxlength">
+						Cannot be more than 20 characters
+					</small>
+				</div>
+			</div>
+			<div class="spaceForm">
+				<label>Recipe Type</label>
+				<select ng-model="recipe.type" ng-options="type for type in addCtrl.types">
+				</select>
 			</div>
 		</div>
 		<div class="inlineDiv alignTop">
 			<label>Image</label><br/>
-			<div class="tabPage" ng-init="image.type='url'">
+			<div class="tabPage" ng-init="image.type='file'">
 				<div class="tabList">
-					<div class="tabButton textButton" ng-click="image.type='url'" 
-						ng-class="{activeTab: image.type === 'url'}">
-						URL
-					</div>
 					<div class="tabButton textButton" ng-click="image.type='file'"
 						ng-class="{activeTab: image.type === 'file'}">
 						File
 					</div>
+					<div class="tabButton textButton" ng-click="image.type='url'" 
+						ng-class="{activeTab: image.type === 'url'}">
+						URL
+					</div>					
 				</div>
 				<div class="tabBody">
 					<div ng-show="image.type === 'url'">

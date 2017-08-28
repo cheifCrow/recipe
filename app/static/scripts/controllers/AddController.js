@@ -9,6 +9,7 @@
 		var vm = this;
 		vm.unitTypes = ['Size', 'Weight', 'Volume'];
 		vm.units = null;
+		vm.types = recipeService.getTypes();
 
 		$scope.recipe = {
 			title: '',

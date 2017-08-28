@@ -10,6 +10,8 @@
 		<script src="scripts/config/routing.js"></script>
 		<script src="scripts/directives/drFocus.js"></script>
 		<script src="scripts/directives/drRecipe.js"></script>
+		<script src="scripts/directives/hideError.js"></script>
+		<script src="scripts/directives/toggleButton.js"></script>
 		<script src="scripts/services/recipeService.js"></script>
 		<script src="scripts/controllers/MainController.js"></script>
 		<script src="scripts/controllers/RecipeController.js"></script>
@@ -20,7 +22,12 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1>App</h1>
+				<div class="relative">
+					<div class="inlineDiv"> 
+						<h1>App</h1>
+					</div>
+					<div ng-model="menu.dropDown" ng-init="menu.dropDown = false" toggle-button class="absoluteRight verticalMid textButton">Drop Down Menu</div>
+				</div>
 			</header>
 
 			<div id="subHeader">

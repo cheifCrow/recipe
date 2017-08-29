@@ -12,6 +12,7 @@
 		<script src="scripts/directives/drRecipe.js"></script>
 		<script src="scripts/directives/hideError.js"></script>
 		<script src="scripts/directives/toggleButton.js"></script>
+		<script src="scripts/directives/lightbox.js"></script>
 		<script src="scripts/services/recipeService.js"></script>
 		<script src="scripts/controllers/MainController.js"></script>
 		<script src="scripts/controllers/RecipeController.js"></script>
@@ -19,7 +20,7 @@
 		<script src="scripts/controllers/AddController.js"></script>
 	</head>
 
-	<body>
+	<body ng-controller="MainController as mainCtrl" ng-class="{noscroll: lightbox.show}">
 		<div class="container">
 			<header>
 				<div class="relative">
@@ -30,11 +31,11 @@
 				</div>
 			</header>
 
-			<div id="subHeader" ng-class="{mobileHide: !menu.dropDown}">
-				<a ng-model="menu.dropDown" toggle-button ng-href="_blank"><div>Home</div></a>
-				<a ng-model="menu.dropDown" toggle-button ng-href="browse"><div>Browse</div></a>
-				<a ng-model="menu.dropDown" toggle-button ng-href="add"><div>New Recipe</div></a>
-				<a ng-model="menu.dropDown" toggle-button ng-href="about"><div>About</div></a>
+			<div id="subHeader" ng-cloak ng-class="{mobileHide: !menu.dropDown}">
+				<a ng-click="menu.dropDown = false" ng-href="_blank"><div>Home</div></a>
+				<a ng-click="menu.dropDown = false" ng-href="browse"><div>Browse</div></a>
+				<a ng-click="menu.dropDown = false" ng-href="add"><div>New Recipe</div></a>
+				<a ng-click="menu.dropDown = false" ng-href="about"><div>About</div></a>
 			</div>
 			
 			<div class="contentSpacer">
@@ -47,5 +48,9 @@
 				<span>Made by Duncan Robertson</span>
 			</footer>
 		</div>
-	</body>
+		<div class="overlay" ng-hide="!lightbox.show">
+			<lightbox visibility="lightbox.show" images="lightbox.images" title="'Overlay Lightbox'">
+			</lightbox>
+		</div>
+	</body>	
 </html>

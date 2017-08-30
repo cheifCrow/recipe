@@ -1,5 +1,19 @@
 <h1>Welcome</h1>
+<h2>Server Statistics</h2>
+Server Started: {{mainCtrl.startTime | date: 'yyyy-MM-dd HH:mm:ss'}}<br><br>
+Up time: {{mainCtrl.upTime.hours}} hours, 
+{{mainCtrl.upTime.minutes}} minutes, 
+{{mainCtrl.upTime.seconds}} seconds
 
+<h2>Nearby Wikis</h2>
+<div ng-repeat="location in mainCtrl.nearby">
+    <h3>{{location.title}}</h3>
+    <p>{{location.summary}}</p>
+    <a ng-href="//{{location.wikipediaUrl}}">Find out more!</a>
+</div>
+<img class="loadingImg" ng-show="mainCtrl.loadingGeo" ng-src="https://i.redd.it/ounq1mw5kdxy.gif">
+<br>
+<button ng-show="!mainCtrl.nearby" type="button" ng-click="mainCtrl.geonames()">Click to find Wikis near you</button>
 <h2>Featured Recipes</h2>
 <a ng-href="recipe/1">Hamburgers</a>
 <br>
@@ -11,4 +25,8 @@
 <br>
 <div class="lightboxContainer">
     <lightbox images="lightbox.images" title="'Embeded Lightbox'"></lightbox>
+</div>
+<br>
+<div class="lightboxContainer">
+    <lightbox images="['https://i.redd.it/09bo9pb35diz.png']"></lightbox>
 </div>

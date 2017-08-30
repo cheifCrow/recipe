@@ -3,13 +3,13 @@
         <div ng-show="title != null" class="inlineDiv lightboxTitle"><h2>{{title}}</h2></div>
         <div ng-show="visibility !=null" ng-click="visibility = false" class="textButton lightboxQuit">x</div>
     </div
-    ><div class="lightboxBottom">
-        <div ng-click="left()" class="textButton lightboxButton">
+    ><div class="lightboxBottom" ng-class="{noTitle: !title, noInfo: images.length === 1}">
+        <div ng-show="images.length > 1" ng-click="left()" class="textButton lightboxButton">
             <div class="lightboxButtonText verticalMid">
                 <
             </div>
         </div
-        ><div class="inlineDiv lightboxContent">
+        ><div class="inlineDiv lightboxContent" ng-class="{noDecoration: images.length === 1}">
             <div class="topContent">
                 <div class="lightboxMask">
                     <img ng-repeat="image in images" ng-class="{active: active == $index}" ng-src="{{image}}">
@@ -17,13 +17,13 @@
             </div
             >
         </div
-        ><div ng-click="right()" class="textButton lightboxButton">
+        ><div ng-show="images.length > 1" ng-click="right()" class="textButton lightboxButton">
             <div class="lightboxButtonText verticalMid">
                 >
             </div>
         </div>
     </div
-    ><div class="bottomInfo">
+    ><div ng-show="images.length > 1" class="bottomInfo">
         <div class="imageCounter">
             <span>Image {{active+1}} / {{images.length}}</span>
         </div>

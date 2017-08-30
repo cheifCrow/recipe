@@ -40,14 +40,6 @@ footer {
 	box-shadow: 3px 3px 5px #888888;
 }
 
-.fullWidth {
-	width: 100%;
-}
-
-.halfWidth {
-	width: 50%;
-}
-
 #content {
 	margin: auto;
 	width: 60%;
@@ -249,11 +241,20 @@ input.ng-dirty.ng-valid {
 }
 
 .lightboxBottom {
-	height: 95%;
+	height: 90%;
 }
 
-.lightboxTop + .lightboxBottom {
-	height: 90%;
+.lightboxContent.noDecoration {
+	height: 100%;
+	width: 100%;
+}
+
+.lightboxBottom.noTitle.noInfo {
+	height: 100%;
+}
+
+.lightboxBottom.noTitle .lightboxBottom.noTitle {
+	height: 95%;
 }
 
 .lightboxButton {
@@ -325,7 +326,7 @@ input.ng-dirty.ng-valid {
 
 .lightbox .topContent {
 	position: relative;
-	height: 95%;
+	height: 100%;
 }
 
 .lightbox .bottomInfo {
@@ -359,6 +360,23 @@ input.ng-dirty.ng-valid {
 	overflow-y: hidden;
 }
 
+.textGlow:hover {
+	text-shadow: 0 0 3px #FFFFFF
+}
+
+.loadingImg {
+	display: block;
+	margin: auto;
+	max-width: 100%;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.halfWidth {
+	width: 50%;
+}
 
 .noscroll {
 	overflow: hidden;

@@ -1,9 +1,24 @@
 (function() {
 	'use strict';
 	angular.module('recipe')
-	.controller('MainController', function($scope, $interval, serverStatsService, geonamesService) {
+	.controller('MainController', function($http, $scope, $interval, serverStatsService, geonamesService) {
 		var vm = this;
-		
+
+		$http({
+			method: 'POST',
+			url: 'login',
+			data: {
+				username: 'duncan',
+				password: 'password'
+			}
+		})
+		.then(function(response) {
+			console.log(response.data)
+		})
+		.catch(function() {
+			console.log('error');
+		});
+
 		var refreshServerStats = function() {
 			var p = serverStatsService.getStats();
 			p.then(function(response) {
@@ -26,23 +41,27 @@
 		}
 
 		refreshServerStats();
-		$interval(refreshServerStats, 1000);
+		$interval(refreshServerStats, 60000);
 
 		vm.geonames = function() {
 			if(navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					vm.loadingGeo = true;
+					vm.geoErr = false;
 					geonamesService.nearbyWiki(position.coords.latitude, position.coords.longitude)
 					.then(function(response) {
-						if (response.status === 200) {
+						if (response.data.geonames) {
 							vm.nearby = response.data.geonames;
+						} else {
+							vm.geoErr = true;
 						}
 					})
-					.then(function() {
-						vm.loadingGeo = false;
+					.catch(function(err) {
+						console.log('There was a problem connecting to the geonames API');
+						vm.geoErr = true;
 					})
-					.catch(function() {
-						console.log('There was a problem contacting the geonames API')	
+					.finally(function() {
+						vm.loadingGeo = false;
 					})
 				})
 			}

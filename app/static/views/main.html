@@ -2,18 +2,23 @@
 <h2>Server Statistics</h2>
 Server Started: {{mainCtrl.startTime | date: 'yyyy-MM-dd HH:mm:ss'}}<br><br>
 Up time: {{mainCtrl.upTime.hours}} hours, 
-{{mainCtrl.upTime.minutes}} minutes, 
-{{mainCtrl.upTime.seconds}} seconds
+{{mainCtrl.upTime.minutes}} minutes
 
 <h2>Nearby Wikis</h2>
-<div ng-repeat="location in mainCtrl.nearby">
-    <h3>{{location.title}}</h3>
-    <p>{{location.summary}}</p>
-    <a ng-href="//{{location.wikipediaUrl}}">Find out more!</a>
+<div ng-if="mainCtrl.nearby">
+    <div ng-repeat="location in mainCtrl.nearby">
+        <h3>{{location.title}}</h3>
+        <p>{{location.summary}}</p>
+        <a ng-href="//{{location.wikipediaUrl}}">Find out more!</a>
+    </div>
+</div>
+<div ng-if="mainCtrl.geoErr">
+    <h3>Ummmmmmmm, whoops</h3>
+    <p>Something didn't work, maybe try again later?</p>
 </div>
 <img class="loadingImg" ng-show="mainCtrl.loadingGeo" ng-src="https://i.redd.it/ounq1mw5kdxy.gif">
 <br>
-<button ng-show="!mainCtrl.nearby" type="button" ng-click="mainCtrl.geonames()">Click to find Wikis near you</button>
+<button ng-disabled="mainCtrl.loadingGeo" ng-show="!mainCtrl.nearby" type="button" ng-click="mainCtrl.geonames()">Click to find Wikis near you</button>
 <h2>Featured Recipes</h2>
 <a ng-href="recipe/1">Hamburgers</a>
 <br>

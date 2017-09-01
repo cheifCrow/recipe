@@ -13,7 +13,7 @@
 			}
 		})
 		.then(function(response) {
-			console.log(response.data)
+			console.log(response.data);
 		})
 		.catch(function() {
 			console.log('error');
@@ -33,12 +33,12 @@
 					hours: hours,
 					minutes: minutes,
 					seconds: seconds
-				}
+				};
 			})
 			.catch(function(err) {
-				console.log('Error');
-			})
-		}
+				console.log('Error: ' + err);
+			});
+		};
 
 		refreshServerStats();
 		$interval(refreshServerStats, 60000);
@@ -56,16 +56,16 @@
 							vm.geoErr = true;
 						}
 					})
-					.catch(function(err) {
+					.catch(function() {
 						console.log('There was a problem connecting to the geonames API');
 						vm.geoErr = true;
 					})
 					.finally(function() {
 						vm.loadingGeo = false;
-					})
-				})
+					});
+				});
 			}
-		}
+		};
 
 		if (!$scope.lightbox) {
 			$scope.lightbox = {

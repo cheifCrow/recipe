@@ -36,7 +36,7 @@
 
 		vm.delInstruction = function(index) {
 			if ($scope.recipe.instructions[index]) {
-				$scope.recipe.instructions.splice(index, 1)
+				$scope.recipe.instructions.splice(index, 1);
 			}
 		};
 
@@ -60,7 +60,7 @@
 				$scope.ingredient.quantity = '';
 				$scope.ingredient.unitType = '';
 			}
-		}
+		};
 
 		vm.addInstruction = function() {
 			if ($scope.instruction) {
@@ -70,7 +70,7 @@
 
 				$scope.instruction = '';
 			}
-		}
+		};
 
 		$scope.$watch('ingredient.unitType', function(newVal) {
 			if (newVal === 'Size') {

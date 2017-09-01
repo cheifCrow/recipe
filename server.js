@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const uuidv4 = require('uuid/v4');
 const crypto = require('crypto');
 const Base64 = require('js-base64').Base64;
 const bodyParser = require('body-parser');
@@ -17,11 +16,12 @@ fs.readFile('./users.json', function(err, data) {
 	} else {
 		console.log('could not load users file');
 	}
-})
+});
+
 
 var serverStats = {
 	startTime: new Date()
-}
+};
 
 app.use(express.static('app/static'));
 app.use(bodyParser.json());
@@ -46,7 +46,7 @@ app.post('/login', function(req, res) {
 							user: users[i].username,
 							exp: expiry
 						}
-					}
+					};
 					token = Base64.encode(JSON.stringify(token.header)) + "." + Base64.encode(JSON.stringify(token.payload));
 					var sig = crypto.createHmac('sha256', secret).update(token).digest('base64');
 					token += "." + sig;
@@ -62,7 +62,7 @@ app.post('/login', function(req, res) {
 	} else {
 		res.status(200).send({message: 'Not implemented yet'});
 	}
-})
+});
 
 app.post('/api/v1/serverStats', function(req, res) {
 	serverStats.upTime = new Date() - serverStats.startTime;

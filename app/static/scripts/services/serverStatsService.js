@@ -7,12 +7,12 @@
                 method: 'POST',
                 url: '/api/v1/' + destination,
             });
-        }
+        };
 
         return {
             getStats: function() {
                 return serverCall('serverStats');
             }
-        }
-    })
+        };
+    });
 })();

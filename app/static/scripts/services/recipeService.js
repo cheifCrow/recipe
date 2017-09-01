@@ -3,7 +3,7 @@
 	angular.module('recipe')
 	.factory('recipeService', function(){
 		//Stand in service, would be replaced by ajax service
-		var types = ['entree', 'desert', 'apetizer', 'breakfast', 'lunch', 'snack', 'other']
+		var types = ['entree', 'desert', 'apetizer', 'breakfast', 'lunch', 'snack', 'other'];
 
 		var recipes = [
 		{

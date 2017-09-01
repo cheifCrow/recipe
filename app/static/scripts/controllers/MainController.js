@@ -4,6 +4,8 @@
 	.controller('MainController', function($http, $scope, $interval, serverStatsService, geonamesService) {
 		var vm = this;
 
+		var token;
+
 		$http({
 			method: 'POST',
 			url: 'login',
@@ -14,9 +16,25 @@
 		})
 		.then(function(response) {
 			console.log(response.data);
+			token = response.data.jwt;
 		})
 		.catch(function() {
 			console.log('error');
+		})
+		.then(function() {
+			return $http({
+				method: 'POST',
+				url: 'verify',
+				headers: {
+					'Authorization': 'Bearer ' + token
+				}
+			});
+		})
+		.then(function(response) {
+			console.log(response.data);
+		})
+		.catch(function() {
+			console.log('verify error');
 		});
 
 		var refreshServerStats = function() {

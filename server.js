@@ -64,6 +64,28 @@ app.post('/login', function(req, res) {
 	}
 });
 
+app.post('/verify', function(req, res) {
+	var header = req.get('Authorization').split(' ');
+	if (header[0] === 'Bearer') {
+		var jwt = header[1].split('.');
+		var token =  jwt[0] + '.' + jwt[1];
+		var sig = jwt[2];
+
+		var verify = crypto.createHmac('sha256', secret).update(token).digest('base64');
+
+		if (sig === verify) {
+			console.log('Validated token');
+			res.status(200).send({message: 'Token accepted'});
+		} else {
+			console.log('Invalid token');
+			res.status(401).send({message: 'Invalid token'});
+		}
+	} else {
+		console.log('Malformed header');
+		res.status(400).send({message: 'Malformed header'});
+	}
+});
+
 app.post('/api/v1/serverStats', function(req, res) {
 	serverStats.upTime = new Date() - serverStats.startTime;
 	res.json(serverStats);
